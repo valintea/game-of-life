@@ -4,12 +4,14 @@ name: Game of life testing
 on: push
 
 jobs:
-  game-of-life-test:
-    runs-on: ubuntu-latest
+   game-of-life-test:
+    runs-on: ${{ matrix.os }}
     strategy:
-      matrix:
-        java: [ '17',  '21']
-    steps:
+     fail-fast: false
+     matrix:
+        java: [ '17', '21' ]
+        os: [ubuntu-latest, windows-latest]
+     steps:
       - uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.8.2
